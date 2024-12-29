@@ -1,0 +1,401 @@
+zadaca1:
+
+#include <iostream>
+using namespace std;
+int main() {
+   int m,n,cifra;
+   cin>>m>>n;
+    bool k=1;
+   for (int i=m; i<=n; i++) {
+       int temp = i;
+       bool p = 0;
+       while (temp > 0) {
+           cifra = temp % 10;
+           if (cifra % 2 != 0) p = 1;
+           temp /= 10;
+       }
+       if (p == 0) {
+           cout << i;
+           k=2;
+          return 0;
+            }
+     }
+   if (k==1) cout<<"NE";
+
+    return 0;
+}
+_____________________________________________
+zadaca2:
+
+#include <iostream>
+using namespace std;
+int main() {
+    int n,ost,cifra,a,broj;
+    cin>>n;
+    if (!n || n<10) cout<<"Brojot ne e validen";
+    else {
+    for (int i=n-1; i>0; i--){
+        broj=i;
+        ost=0;
+        a=0;
+        while(broj>0){
+            cifra=broj%10;
+            ost=ost*10+cifra;
+            broj/=10;
+            a++;
+        }
+
+        if (ost%a==0) {
+            cout<<i;
+            break;
+        }
+        else continue;
+   	 }
+    }
+    return 0;
+}
+________________________________
+zadaca3:
+
+#include <iostream>
+using namespace std;
+int main() {
+    int n,suma,maxSuma=0, broj;
+    cin>>n;
+    for (int i=1; i<n; i++){
+        suma=0;
+        for (int j=1; j<i; j++){
+            if (i%j==0 && i!=j) suma+=j;
+        }
+        if (suma>maxSuma) {
+            broj = i;
+            maxSuma=suma;
+            }
+        }
+    cout<<broj;
+
+    return 0;
+}
+___________________________________
+zadaca4:
+
+#include <iostream>
+using namespace std;
+int main() {
+    char a;
+    int br1,suma=0,br=0;
+    while (cin.get(a)){
+        if (a=='!') break;
+        else {
+
+            if (a >= '0' && a <= '9') {
+                if (br==1) {
+                    suma+=9*br1;
+                }
+                br1 = a - '0';
+                suma+=br1;
+                br++;
+            }
+            else {
+                br=0;
+                br1=0;
+                }
+            }
+
+    }
+    cout<<suma;
+
+    return 0;
+}
+_______________________________________
+zadaca5:
+
+#include <iostream>
+using namespace std;
+int main() {
+    int a,b,cifra;
+    cin>>a>>b;
+    if (a<=0 || b<=0) {
+        cout<<"Invalid input";
+        return 0;
+    }
+    if (b>a) {
+        int temp=b;
+        b=a;
+        a=temp;
+    }
+    int temp=0;
+    a/=10;
+        while (a>0) {
+            cifra = a % 10;
+            temp = 10 * temp + cifra;
+            a /= 100;
+        }
+        cifra=0;
+        int novtemp=0;
+        while (temp>0){
+            cifra = temp % 10;
+            novtemp = 10 * novtemp + cifra;
+            temp /= 10;
+        }
+            if (novtemp == b) cout << "PAREN";
+            else cout << "NE";
+    return 0;
+}
+________________________________________________
+zadaca6:
+
+#include <iostream>
+using namespace std;
+int main() {
+    float z,a,b,brojac, parovi;
+    cin>>z;
+    float p=0.0;
+    parovi=0.0;
+    brojac=0.0;
+    while (cin>>a>>b){
+        if (a==0 && b==0) break;
+        else {
+            brojac++;
+            if (a + b == z) parovi++;
+        }
+    }
+    cout<<"Vnesovte "<<parovi<<" parovi od broevi chij zbir e "<<z<<endl;
+    cout<<"Procentot na parovi so zbir "<<z<<" e "<<(parovi/brojac)*100<<"%\n";
+
+
+    return 0;
+}
+_______________________________________________
+zadaca7:
+
+#include <iostream>
+using namespace std;
+int main() {
+    int n;
+    cin>>n;
+    if (n<2) return 1;
+    for (int i=0; i<n; i++){
+        cout<<"%";
+        if (i==0 || i==n-1) {
+            for (int j = 0; j < n-2; j++) {
+                cout << "@";
+            }
+        }
+        else {
+            for (int j = 0; j < n-2; j++) {
+                cout << ".";
+            }
+        }
+        cout<<"%\n";
+    }
+    return 0;
+}
+____________________________________________________
+zadaca8:
+
+#include <iostream>
+using namespace std;
+int main() {
+    int n, x, broj,i2,x2,cifra;
+    broj = 0;
+    cin >> n >> x;
+    for (int i = n-1; i > 0; i--) {
+        bool p = true;
+        i2 = i;
+        while (i2 > 0) {
+            cifra = i2 % 10;
+            i2 /= 10;
+            x2 = x;
+            while (x2 > 0) {
+                if (cifra == x2 % 10) {
+                    p = false;
+                    break;
+                }
+                x2 /= 10;
+            }
+        }
+        if (p)
+        {
+            broj = i;
+            break;
+        }
+    }
+    cout << broj;
+    return 0;
+}
+________________________________________________
+zadaca9:
+
+#include <iostream>
+using namespace std;
+int main() {
+    char n;
+    int i=0;
+    int suma=0;
+    while (cin>>n){
+        if (n=='.') break;
+        else{
+                if (n>='0' && n<='9'){
+                suma+=(n-'0');
+                i++;
+            		 }
+                else if (n>='a' && n<='f') suma+=n-'a'+0xA;
+                else if (n>='A' && n<='F') suma+=n-'A'+0xA;
+            }
+        }
+    if (suma%16==0) {
+        if (suma%10==6 && (suma/10)%10==1) cout <<"Poln pogodok";
+        else cout << "Pogodok";
+        }
+    else cout<<suma;
+
+    return 0;
+}
+_______________________________________
+zadaca10:
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int broj;
+    int c1,c2;
+    while (cin>>broj){
+        int prov=0;
+        int tmp=broj;
+        if (broj<10) continue;
+        c1=broj%10;
+        c2=(broj/10)%10;
+        if (c1==c2) continue; // ako poslednit 2 cifri se isti brojot ne e cikcak
+        else if (c1>c2) prov=1; // moram tuka da go stavam ova za da znam
+        else prov=-1;          // dali broevite trgaat vo rastecki ili opagacki redosled
+        tmp/=10;
+        while (tmp>=10){
+            c1=c2;   /*vtorata cifra da stane prva za da se izbegnat slucai
+		 	kako 9652 | 9>6 5>2*/
+            c2=(tmp/10)%10;
+            tmp/=10;
+            if (prov==1){
+                if (c1<c2) prov=-1; // za da prodolzi so proveruvanja od slednoto vrtenje
+                else prov=2;  // ako p e 2 znaci nema da go printa brojot
+            }
+            else if(prov==-1){
+                if (c1>c2) prov=1;
+                else prov=2;  // ako p e 2 znaci nema da go printa brojot
+            }
+        }
+        if (prov==1 || prov==-1) cout<<broj<<"\n";
+    }
+    return 0;
+    }
+
+
+______________________________________
+zadaca11:
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int broj;
+    int c1,c2;
+    while (cin>>broj){
+        int prov=0;
+        int tmp=broj;
+        if (broj<10) continue;
+        c1=broj%10;
+        c2=(broj/10)%10;
+        if (c1==c2) continue;
+        else if (c1>=5 && c2<5) prov=1;
+        else if (c1<5 && c2>=5) prov=-1;
+        tmp/=10;
+        while (tmp>=10){
+            c1=c2;
+            c2=(tmp/10)%10;
+            tmp/=10;
+            if (prov==1){
+                if (c1<5 && c2>=5) prov=-1;
+                else prov=2;
+            }
+            else if(prov==-1){
+                if (c1>=5 && c2<5) prov=1;
+                else prov=2;
+            }
+        }
+        if (prov==1 || prov==-1) cout<<broj<<"\n";
+    }
+    return 0;
+}
+
+
+_________________________________
+zadaca12:
+
+#include <iostream>
+using namespace std;
+int main() {
+    int n,br0=0,br1=0,br2=0,br3=0,br4=0,cifra=0;
+    while (cin>>n){
+        int a=n;
+        int br=0;
+        int max=0;
+        while (a>0){
+            cifra=a%10;
+            a/=10;
+            if (cifra>max) max=cifra;
+
+        }
+        while (n>0){
+            cifra=n%10;
+            n/=10;
+            if (cifra==max) break;
+            br++;
+        }
+        if (br==0) br0++;
+        else if (br==1) br1++;
+        else if (br==2) br2++;
+        else if (br==3) br3++;
+        else if (br==4) br4++;
+    }
+    cout<<0<<": "<<br0<<"\n";
+    cout<<1<<": "<<br1<<"\n";
+    cout<<2<<": "<<br2<<"\n";
+    cout<<3<<": "<<br3<<"\n";
+    cout<<4<<": "<<br4<<"\n";
+    return 0;
+}
+_______________________________________
+zadaca13:
+
+#include <iostream>
+using namespace std;
+int main() {
+    int n,suma,cifra,max,tmp;
+    max=0;
+    while (cin>>n){
+        cout<<n<<": ";
+        suma=max;
+        max=0;
+        tmp=n;
+        while (tmp>0){
+            cifra=tmp%10;
+            if (cifra>max) max=cifra;
+            tmp/=10;
+            suma+=cifra;
+        }
+        cout<<suma<<"\n";
+    }
+
+    return 0;
+}
+
+
+________________________________________
+
+
+
+
+
+
+
